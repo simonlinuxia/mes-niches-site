@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://simonlinuxia.github.io/mes-niches-site/sitemap.xml
