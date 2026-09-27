@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur : coût réel de vos repas économiques</title>
+<meta name="description" content="Calcule le coût par portion de 4 recettes économiques avec des prix moyens réels du Canada (Statistique Canada).">
+<link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/fr/repas-economiques-pour-etudiants/calculateur-cout-repas.html">
+<!--HREFLANG_START-->
+
+<!--HREFLANG_END-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculateur : coût réel de vos repas économiques">
+<meta property="og:description" content="Calcule le coût par portion de 4 recettes économiques avec des prix moyens réels du Canada (Statistique Canada).">
+<meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/fr/repas-economiques-pour-etudiants/calculateur-cout-repas.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculateur : coût réel de vos repas économiques">
+<meta name="twitter:description" content="Calcule le coût par portion de 4 recettes économiques avec des prix moyens réels du Canada (Statistique Canada).">
+<meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
+
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.8em; }
+  a { color: #0a5; }
+  nav.breadcrumb { margin-bottom: 24px; font-size: 0.85em; color: #666; }
+  nav.breadcrumb a { color: #666; }
+  time { color: #888; font-size: 0.85em; }
+  .related { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+  .related h2 { font-size: 1.1em; }
+  footer { margin-top: 60px; font-size: 0.8em; color: #999; }
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><a href="https://simonlinuxia.github.io/mes-niches-site/fr/">Accueil</a> › <a href="./">repas économiques pour étudiants</a> › <span>Calculateur : coût réel de vos repas économiques</span></nav>
+<main>
+<article>
+<h1>Calculateur : coût réel de vos repas économiques</h1>
+<p>Calcule le coût par portion de 4 recettes économiques avec des prix moyens réels du Canada (Statistique Canada).</p>
+
+<div id="meal-calc"></div>
+<style>
+  #meal-calc { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 24px 0; }
+  #meal-calc select { width: 100%; padding: 8px; font-size: 1em; margin-bottom: 16px; }
+  #meal-calc .total { font-size: 1.4em; font-weight: bold; color: #0a5; }
+  #meal-calc .per-portion { color: #555; margin-bottom: 12px; }
+  #meal-calc table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+  #meal-calc td { padding: 4px 0; border-bottom: 1px solid #eee; }
+  #meal-calc td:last-child { text-align: right; }
+  #meal-calc .source-note { font-size: 0.8em; color: #999; margin-top: 12px; }
+  #meal-calc .calc-error { color: #999; font-style: italic; }
+</style>
+<script>
+(function() {
+  const LANG = "fr";
+  const PRICE_URL = "https://simonlinuxia.github.io/mes-niches-site/data/prix-repas.json";
+
+  const RECIPES = [
+    { id: "riz-haricots", portions: 4,
+      name: { fr: "Bol de riz, haricots et légumes", en: "Rice and beans bowl", es: "Bol de arroz con frijoles y verduras" },
+      ingredients: [
+        { product: "White rice, 2 kilograms", qty: 300, label: { fr: "Riz blanc", en: "White rice", es: "Arroz blanco" } },
+        { product: "Canned beans and lentils, 540 millilitres", qty: 540, label: { fr: "Haricots et lentilles en conserve", en: "Canned beans and lentils", es: "Frijoles y lentejas en lata" } },
+        { product: "Canned tomatoes, 796 millilitres", qty: 796, label: { fr: "Tomates en conserve", en: "Canned tomatoes", es: "Tomates en lata" } },
+        { product: "Onions, 1.36 kilograms", qty: 200, label: { fr: "Oignon", en: "Onion", es: "Cebolla" } },
+        { product: "Vegetable oil, 3 litres", qty: 30, label: { fr: "Huile végétale", en: "Vegetable oil", es: "Aceite vegetal" } }
+      ] },
+    { id: "pates-thon", portions: 4,
+      name: { fr: "Pâtes au thon", en: "Tuna pasta", es: "Pasta con atún" },
+      ingredients: [
+        { product: "Dry or fresh pasta, 500 grams", qty: 500, label: { fr: "Pâtes", en: "Pasta", es: "Pasta" } },
+        { product: "Canned tuna, 170 grams", qty: 340, label: { fr: "Thon en conserve (2 boîtes)", en: "Canned tuna (2 cans)", es: "Atún en lata (2 latas)" } },
+        { product: "Canned tomatoes, 796 millilitres", qty: 796, label: { fr: "Tomates en conserve", en: "Canned tomatoes", es: "Tomates en lata" } },
+        { product: "Onions, 1.36 kilograms", qty: 150, label: { fr: "Oignon", en: "Onion", es: "Cebolla" } },
+        { product: "Block cheese, 500 grams", qty: 100, label: { fr: "Fromage (optionnel)", en: "Cheese (optional)", es: "Queso (opcional)" } }
+      ] },
+    { id: "poulet-legumes", portions: 4,
+      name: { fr: "Poulet et légumes au four", en: "Sheet-pan chicken and vegetables", es: "Pollo y verduras al horno" },
+      ingredients: [
+        { product: "Chicken thigh, per kilogram", qty: 800, label: { fr: "Cuisses de poulet", en: "Chicken thighs", es: "Muslos de pollo" } },
+        { product: "Potatoes, 4.54 kilograms", qty: 800, label: { fr: "Pommes de terre", en: "Potatoes", es: "Papas" } },
+        { product: "Carrots, 1.36 kilograms", qty: 400, label: { fr: "Carottes", en: "Carrots", es: "Zanahorias" } },
+        { product: "Onions, 1.36 kilograms", qty: 200, label: { fr: "Oignon", en: "Onion", es: "Cebolla" } },
+        { product: "Vegetable oil, 3 litres", qty: 30, label: { fr: "Huile végétale", en: "Vegetable oil", es: "Aceite vegetal" } }
+      ] },
+    { id: "chili-lentilles", portions: 4,
+      name: { fr: "Chili de lentilles", en: "Lentil chili", es: "Chili de lentejas" },
+      ingredients: [
+        { product: "Dried lentils, 900 grams", qty: 450, label: { fr: "Lentilles sèches", en: "Dried lentils", es: "Lentejas secas" } },
+        { product: "Canned tomatoes, 796 millilitres", qty: 796, label: { fr: "Tomates en conserve", en: "Canned tomatoes", es: "Tomates en lata" } },
+        { product: "Onions, 1.36 kilograms", qty: 200, label: { fr: "Oignon", en: "Onion", es: "Cebolla" } },
+        { product: "Carrots, 1.36 kilograms", qty: 200, label: { fr: "Carottes", en: "Carrots", es: "Zanahorias" } },
+        { product: "Vegetable oil, 3 litres", qty: 30, label: { fr: "Huile végétale", en: "Vegetable oil", es: "Aceite vegetal" } }
+      ] }
+  ];
+
+  const L = {
+    fr: { choose: "Choisis une recette :", total: "Coût total (4 portions) :", perPortion: "par portion :",
+          source: "Prix moyens Canada, {month} (Statistique Canada) — les prix réels varient selon le magasin et la région.",
+          error: "Calculateur temporairement indisponible — réessaie plus tard." },
+    en: { choose: "Choose a recipe:", total: "Total cost (4 servings):", perPortion: "per serving:",
+          source: "Average Canada prices, {month} (Statistics Canada) — real prices vary by store and region.",
+          error: "Calculator temporarily unavailable — please try again later." },
+    es: { choose: "Elige una receta:", total: "Costo total (4 porciones):", perPortion: "por porción:",
+          source: "Precios promedio de Canadá, {month} (Statistics Canada) — los precios reales varían según la tienda y la región.",
+          error: "Calculadora temporalmente no disponible — inténtalo de nuevo más tarde." }
+  };
+
+  function computeRecipeCost(recipe, priceData) {
+    let total = 0;
+    const breakdown = [];
+    for (const ing of recipe.ingredients) {
+      const info = priceData.prices[ing.product];
+      if (!info) { breakdown.push({ ...ing, cost: null }); continue; }
+      const cost = info.price_per_base_unit * ing.qty;
+      total += cost;
+      breakdown.push({ ...ing, cost });
+    }
+    return { total, perPortion: total / recipe.portions, breakdown };
+  }
+
+  function render(priceData) {
+    const t = L[LANG] || L.fr;
+    const root = document.getElementById("meal-calc");
+    const select = document.createElement("select");
+    select.innerHTML = RECIPES.map(r => `<option value="${r.id}">${r.name[LANG] || r.name.fr}</option>`).join("");
+    const resultDiv = document.createElement("div");
+
+    function update() {
+      const recipe = RECIPES.find(r => r.id === select.value);
+      const { total, perPortion, breakdown } = computeRecipeCost(recipe, priceData);
+      const rows = breakdown.map(b =>
+        `<tr><td>${b.label[LANG] || b.label.fr}</td><td>${b.cost === null ? "?" : b.cost.toFixed(2) + " $"}</td></tr>`
+      ).join("");
+      resultDiv.innerHTML = `
+        <div class="total">${t.total} ${total.toFixed(2)} $</div>
+        <div class="per-portion">${t.perPortion} ${perPortion.toFixed(2)} $</div>
+        <table>${rows}</table>
+        <div class="source-note">${t.source.replace("{month}", priceData.as_of)}</div>
+      `;
+    }
+
+    select.addEventListener("change", update);
+    root.innerHTML = `<div style="margin-bottom:8px;font-weight:600">${t.choose}</div>`;
+    root.appendChild(select);
+    root.appendChild(resultDiv);
+    update();
+  }
+
+  fetch(PRICE_URL)
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(render)
+    .catch(() => {
+      document.getElementById("meal-calc").innerHTML =
+        `<p class="calc-error">${(L[LANG] || L.fr).error}</p>`;
+    });
+})();
+</script>
+
+</article>
+</main>
+<footer><a href="https://simonlinuxia.github.io/mes-niches-site/fr/">Accueil</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/fr/a-propos.html">À propos</a></footer>
+</body>
+</html>
