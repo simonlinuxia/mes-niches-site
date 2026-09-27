@@ -4,156 +4,234 @@
     "White rice, 2 kilograms": {
       "value": 9.62,
       "unit": "Dollars",
+      "package_qty": 2000.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.00481,
       "vector": "v1458869937",
       "coordinate": "11.94"
     },
     "Brown rice, 900 grams": {
       "value": 5.91,
       "unit": "Dollars",
+      "package_qty": 900.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.006567,
       "vector": "v1458869906",
       "coordinate": "11.93"
     },
     "Dry or fresh pasta, 500 grams": {
       "value": 3.45,
       "unit": "Dollars",
+      "package_qty": 500.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.0069,
       "vector": "v1353834327",
       "coordinate": "11.57"
     },
     "Dried lentils, 900 grams": {
       "value": 3.63,
       "unit": "Dollars",
+      "package_qty": 900.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.004033,
       "vector": "v1353834344",
       "coordinate": "11.74"
     },
     "Dry beans and legumes, 900 grams": {
       "value": 3.59,
       "unit": "Dollars",
+      "package_qty": 900.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.003989,
       "vector": "v1458869913",
       "coordinate": "11.101"
     },
     "Canned beans and lentils, 540 millilitres": {
       "value": 1.72,
       "unit": "Dollars",
+      "package_qty": 540.0,
+      "base_unit": "ml",
+      "price_per_base_unit": 0.003185,
       "vector": "v1353834343",
       "coordinate": "11.73"
     },
     "Canned tuna, 170 grams": {
       "value": 1.84,
       "unit": "Dollars",
+      "package_qty": 170.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.010824,
       "vector": "v1353834282",
       "coordinate": "11.12"
     },
     "Canned tomatoes, 796 millilitres": {
       "value": 2.27,
       "unit": "Dollars",
+      "package_qty": 796.0,
+      "base_unit": "ml",
+      "price_per_base_unit": 0.002852,
       "vector": "v1353834341",
       "coordinate": "11.71"
     },
     "Chicken breasts, per kilogram": {
       "value": 14.68,
       "unit": "Dollars",
+      "package_qty": 1000.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.01468,
       "vector": "v1353834278",
       "coordinate": "11.8"
     },
     "Chicken thigh, per kilogram": {
       "value": 13.4,
       "unit": "Dollars",
+      "package_qty": 1000.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.0134,
       "vector": "v1353834279",
       "coordinate": "11.9"
     },
     "Chicken drumsticks, per kilogram": {
       "value": 6.69,
       "unit": "Dollars",
+      "package_qty": 1000.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.00669,
       "vector": "v1353834313",
       "coordinate": "11.43"
     },
     "Ground beef, per kilogram": {
       "value": 16.49,
       "unit": "Dollars",
+      "package_qty": 1000.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.01649,
       "vector": "v1353834274",
       "coordinate": "11.4"
     },
     "Eggs, 1 dozen": {
       "value": 4.95,
       "unit": "Dollars",
+      "package_qty": 12.0,
+      "base_unit": "unit",
+      "price_per_base_unit": 0.4125,
       "vector": "v1353834290",
       "coordinate": "11.20"
     },
     "White bread, 675 grams": {
       "value": 3.6,
       "unit": "Dollars",
+      "package_qty": 675.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.005333,
       "vector": "v1353834326",
       "coordinate": "11.56"
     },
     "Milk, 2 litres": {
       "value": 5.53,
       "unit": "Dollars",
+      "package_qty": 2000.0,
+      "base_unit": "ml",
+      "price_per_base_unit": 0.002765,
       "vector": "v1353834284",
       "coordinate": "11.14"
     },
     "Milk, 4 litres": {
       "value": 6.99,
       "unit": "Dollars",
+      "package_qty": 4000.0,
+      "base_unit": "ml",
+      "price_per_base_unit": 0.001748,
       "vector": "v1353834285",
       "coordinate": "11.15"
     },
     "Butter, 454 grams": {
       "value": 5.92,
       "unit": "Dollars",
+      "package_qty": 454.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.01304,
       "vector": "v1353834287",
       "coordinate": "11.17"
     },
     "Peanut butter, 1 kilogram": {
       "value": 5.62,
       "unit": "Dollars",
+      "package_qty": 1000.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.00562,
       "vector": "v1353834338",
       "coordinate": "11.68"
     },
     "Tofu, 350 grams": {
       "value": 2.96,
       "unit": "Dollars",
+      "package_qty": 350.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.008457,
       "vector": "v1458869936",
       "coordinate": "11.102"
     },
     "Block cheese, 500 grams": {
       "value": 7.11,
       "unit": "Dollars",
+      "package_qty": 500.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.01422,
       "vector": "v1353834288",
       "coordinate": "11.18"
     },
     "Onions, 1.36 kilograms": {
       "value": 5.02,
       "unit": "Dollars",
+      "package_qty": 1360.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.003691,
       "vector": "v1353834305",
       "coordinate": "11.35"
     },
     "Potatoes, 4.54 kilograms": {
       "value": 5.32,
       "unit": "Dollars",
+      "package_qty": 4540.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.001172,
       "vector": "v1353834300",
       "coordinate": "11.30"
     },
     "Carrots, 1.36 kilograms": {
       "value": 4.75,
       "unit": "Dollars",
+      "package_qty": 1360.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.003493,
       "vector": "v1353834303",
       "coordinate": "11.33"
     },
     "Vegetable oil, 3 litres": {
       "value": 10.23,
       "unit": "Dollars",
+      "package_qty": 3000.0,
+      "base_unit": "ml",
+      "price_per_base_unit": 0.00341,
       "vector": "v1353834336",
       "coordinate": "11.66"
     },
     "Wheat flour, 2.5 kilograms": {
       "value": 5.36,
       "unit": "Dollars",
+      "package_qty": 2500.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.002144,
       "vector": "v1353834329",
       "coordinate": "11.59"
     },
     "Yogurt, 500 grams": {
       "value": 3.84,
       "unit": "Dollars",
+      "package_qty": 500.0,
+      "base_unit": "g",
+      "price_per_base_unit": 0.00768,
       "vector": "v1353834289",
       "coordinate": "11.19"
     }
