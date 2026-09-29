@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator: Maintenance Schedule Based on Your Mileage</title>
+<meta name="description" content="Calculate upcoming maintenance for your vehicle based on current mileage and age, using generic intervals.">
+<link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/en/entretien-de-base-auto-pour-non-mecaniciens/calculateur-echeancier-entretien.html">
+<!--HREFLANG_START-->
+
+<!--HREFLANG_END-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculator: Maintenance Schedule Based on Your Mileage">
+<meta property="og:description" content="Calculate upcoming maintenance for your vehicle based on current mileage and age, using generic intervals.">
+<meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/en/entretien-de-base-auto-pour-non-mecaniciens/calculateur-echeancier-entretien.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculator: Maintenance Schedule Based on Your Mileage">
+<meta name="twitter:description" content="Calculate upcoming maintenance for your vehicle based on current mileage and age, using generic intervals.">
+<meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
+
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.8em; }
+  a { color: #0a5; }
+  nav.breadcrumb { margin-bottom: 24px; font-size: 0.85em; color: #666; }
+  nav.breadcrumb a { color: #666; }
+  time { color: #888; font-size: 0.85em; }
+  .related { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+  .related h2 { font-size: 1.1em; }
+  footer { margin-top: 60px; font-size: 0.8em; color: #999; }
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><a href="https://simonlinuxia.github.io/mes-niches-site/en/">Home</a> › <a href="./">basic car maintenance for non-mechanics</a> › <span>Calculator: Maintenance Schedule</span></nav>
+<main>
+<article>
+<h1>Calculator: Maintenance Schedule Based on Your Mileage</h1>
+<p>Enter your current mileage and your vehicle's age to see which maintenance tasks are coming up, based on generic intervals.</p>
+
+<div id="auto-calc"></div>
+<style>
+  #auto-calc { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 24px 0; }
+  #auto-calc label { display: block; font-weight: 600; margin-bottom: 4px; }
+  #auto-calc input { width: 100%; padding: 8px; font-size: 1em; margin-bottom: 16px; box-sizing: border-box; }
+  #auto-calc .field { margin-bottom: 4px; }
+  #auto-calc table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 12px; }
+  #auto-calc td, #auto-calc th { padding: 6px 4px; border-bottom: 1px solid #eee; text-align: left; }
+  #auto-calc td:last-child, #auto-calc th:last-child { text-align: right; }
+  #auto-calc .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; }
+  #auto-calc .tag-bientot { background: #fde2e2; color: #a11; }
+  #auto-calc .tag-quelques-mois { background: #fff3cd; color: #8a6500; }
+  #auto-calc .tag-plus-tard { background: #e6f4ea; color: #1a7a3c; }
+  #auto-calc .disclaimer { font-size: 0.8em; color: #999; margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; }
+</style>
+<script>
+(function() {
+  const LANG = "en";
+
+  const ITEMS = [
+    { id: "oil",          km: 10000, months: 12, label: { fr: "Vidange d'huile", en: "Oil change", es: "Cambio de aceite" } },
+    { id: "tires",        km: 11000, months: null, label: { fr: "Rotation des pneus", en: "Tire rotation", es: "Rotación de neumáticos" } },
+    { id: "cabin_filter", km: 20000, months: 12, label: { fr: "Filtre à habitacle", en: "Cabin air filter", es: "Filtro de habitáculo" } },
+    { id: "air_filter",   km: 22500, months: null, label: { fr: "Filtre à air moteur", en: "Engine air filter", es: "Filtro de aire del motor" } },
+    { id: "brakes",       km: 20000, months: null, label: { fr: "Inspection des freins", en: "Brake inspection", es: "Inspección de frenos" } },
+    { id: "coolant",      km: 80000, months: 60, label: { fr: "Liquide de refroidissement", en: "Coolant", es: "Líquido refrigerante" } },
+    { id: "transmission", km: 80000, months: 60, label: { fr: "Liquide de transmission", en: "Transmission fluid", es: "Líquido de transmisión" } },
+    { id: "spark_plugs",  km: 130000, months: null, label: { fr: "Bougies d'allumage", en: "Spark plugs", es: "Bujías" } },
+    { id: "battery",      km: null, months: 36, label: { fr: "Test de la batterie", en: "Battery test", es: "Prueba de batería" } }
+  ];
+
+  const L = {
+    fr: { kmLabel: "Kilométrage actuel (km) :", ageLabel: "Âge du véhicule (années) :",
+          col1: "Entretien", col2: "Prochain seuil", col3: "Dans environ",
+          bientot: "Bientôt", quelquesMois: "D'ici quelques mois", plusTard: "Plus tard",
+          km_: "km", mois: "mois",
+          disclaimer: "Ces intervalles sont génériques et ne remplacent pas les recommandations du fabricant. Consultez le manuel de votre véhicule pour des intervalles précis à votre marque et modèle.",
+          error: "Entre un kilométrage et un âge valides pour voir l'échéancier." },
+    en: { kmLabel: "Current mileage (km):", ageLabel: "Vehicle age (years):",
+          col1: "Maintenance", col2: "Next threshold", col3: "In about",
+          bientot: "Soon", quelquesMois: "In a few months", plusTard: "Later",
+          km_: "km", mois: "months",
+          disclaimer: "These intervals are generic and do not replace manufacturer recommendations. Check your vehicle's manual for intervals specific to your make and model.",
+          error: "Enter a valid mileage and age to see the schedule." },
+    es: { kmLabel: "Kilometraje actual (km):", ageLabel: "Antigüedad del vehículo (años):",
+          col1: "Mantenimiento", col2: "Próximo umbral", col3: "En aproximadamente",
+          bientot: "Pronto", quelquesMois: "En unos meses", plusTard: "Más adelante",
+          km_: "km", mois: "meses",
+          disclaimer: "Estos intervalos son genéricos y no reemplazan las recomendaciones del fabricante. Consulta el manual de tu vehículo para intervalos específicos de tu marca y modelo.",
+          error: "Ingresa un kilometraje y una edad válidos para ver el calendario." }
+  };
+
+  function computeSchedule(currentKm, ageYears) {
+    const ageMonths = Math.max(ageYears * 12, 1);
+    const kmPerMonth = currentKm > 0 ? currentKm / ageMonths : 1250; // ~15000 km/an par défaut
+
+    return ITEMS.map(item => {
+      let monthsUntilKm = Infinity, nextKm = null;
+      if (item.km) {
+        nextKm = Math.ceil((currentKm + 1) / item.km) * item.km;
+        monthsUntilKm = (nextKm - currentKm) / kmPerMonth;
+      }
+      let monthsUntilTime = Infinity;
+      if (item.months) {
+        monthsUntilTime = item.months - (ageMonths % item.months);
+      }
+      const monthsUntilDue = Math.min(monthsUntilKm, monthsUntilTime);
+      return { ...item, nextKm, monthsUntilDue };
+    }).sort((a, b) => a.monthsUntilDue - b.monthsUntilDue);
+  }
+
+  function urgencyTag(months, t) {
+    if (months <= 2) return { cls: "tag-bientot", text: t.bientot };
+    if (months <= 6) return { cls: "tag-quelques-mois", text: t.quelquesMois };
+    return { cls: "tag-plus-tard", text: t.plusTard };
+  }
+
+  function render() {
+    const t = L[LANG] || L.fr;
+    const root = document.getElementById("auto-calc");
+    root.innerHTML = `
+      <div class="field"><label>${t.kmLabel}</label><input type="number" id="auto-km" min="0" step="1000" value="80000"></div>
+      <div class="field"><label>${t.ageLabel}</label><input type="number" id="auto-age" min="0" step="0.5" value="5"></div>
+      <div id="auto-result"></div>
+      <div class="disclaimer">${t.disclaimer}</div>
+    `;
+    const kmInput = document.getElementById("auto-km");
+    const ageInput = document.getElementById("auto-age");
+    const resultDiv = document.getElementById("auto-result");
+
+    function update() {
+      const currentKm = parseFloat(kmInput.value);
+      const ageYears = parseFloat(ageInput.value);
+      if (!(currentKm >= 0) || !(ageYears >= 0)) {
+        resultDiv.innerHTML = `<p>${t.error}</p>`;
+        return;
+      }
+      const schedule = computeSchedule(currentKm, ageYears);
+      const rows = schedule.map(item => {
+        const tag = urgencyTag(item.monthsUntilDue, t);
+        const nextKmText = item.nextKm ? `${item.nextKm.toLocaleString(LANG)} ${t.km_}` : "—";
+        const monthsText = isFinite(item.monthsUntilDue) ? `~${Math.max(Math.round(item.monthsUntilDue), 0)} ${t.mois}` : "—";
+        return `<tr>
+          <td>${item.label[LANG] || item.label.fr}</td>
+          <td>${nextKmText}</td>
+          <td><span class="tag ${tag.cls}">${tag.text}</span> (${monthsText})</td>
+        </tr>`;
+      }).join("");
+      resultDiv.innerHTML = `<table>
+        <tr><th>${t.col1}</th><th>${t.col2}</th><th>${t.col3}</th></tr>
+        ${rows}
+      </table>`;
+    }
+
+    kmInput.addEventListener("input", update);
+    ageInput.addEventListener("input", update);
+    update();
+  }
+
+  render();
+})();
+</script>
+
+</article>
+</main>
+<footer><a href="https://simonlinuxia.github.io/mes-niches-site/en/">Home</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/en/about.html">About</a></footer>
+</body>
+</html>
