@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur : optimisez le rangement de votre petit espace</title>
+<meta name="description" content="Calcule la superficie, le volume et le potentiel de rangement mural de votre pièce, avec des suggestions d'aménagement adaptées.">
+<link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/fr/organisation-et-rangement-en-petit-espace/calculateur-amenagement-petit-espace.html">
+<!--HREFLANG_START-->
+
+<!--HREFLANG_END-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculateur : optimisez le rangement de votre petit espace">
+<meta property="og:description" content="Calcule la superficie, le volume et le potentiel de rangement mural de votre pièce, avec des suggestions d'aménagement adaptées.">
+<meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/fr/organisation-et-rangement-en-petit-espace/calculateur-amenagement-petit-espace.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculateur : optimisez le rangement de votre petit espace">
+<meta name="twitter:description" content="Calcule la superficie, le volume et le potentiel de rangement mural de votre pièce, avec des suggestions d'aménagement adaptées.">
+<meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
+
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.8em; }
+  a { color: #0a5; }
+  nav.breadcrumb { margin-bottom: 24px; font-size: 0.85em; color: #666; }
+  nav.breadcrumb a { color: #666; }
+  time { color: #888; font-size: 0.85em; }
+  .related { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+  .related h2 { font-size: 1.1em; }
+  footer { margin-top: 60px; font-size: 0.8em; color: #999; }
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><a href="https://simonlinuxia.github.io/mes-niches-site/fr/">Accueil</a> › <a href="./">organisation et rangement en petit espace</a> › <span>Calculateur : aménagement</span></nav>
+<main>
+<article>
+<h1>Calculateur : optimisez le rangement de votre petit espace</h1>
+<p>Entrez les dimensions de votre pièce pour estimer sa superficie, son volume, son potentiel de rangement mural, et obtenir des suggestions d'aménagement adaptées.</p>
+
+<div id="espace-calc"></div>
+<style>
+  #espace-calc { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 24px 0; }
+  #espace-calc label { display: block; font-weight: 600; margin-bottom: 4px; }
+  #espace-calc select, #espace-calc input { width: 100%; padding: 8px; font-size: 1em; margin-bottom: 16px; box-sizing: border-box; }
+  #espace-calc .field { margin-bottom: 4px; }
+  #espace-calc .row { display: flex; gap: 12px; }
+  #espace-calc .row .field { flex: 1; }
+  #espace-calc .stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+  #espace-calc .stat { background: #f4f4f4; border-radius: 6px; padding: 10px 14px; flex: 1; min-width: 140px; }
+  #espace-calc .stat .value { font-size: 1.3em; font-weight: bold; color: #0a5; }
+  #espace-calc .stat .caption { font-size: 0.8em; color: #666; }
+  #espace-calc .tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 0.9em; font-weight: 600; margin-bottom: 8px; }
+  #espace-calc .tag-verysmall { background: #fde2e2; color: #a11; }
+  #espace-calc .tag-small { background: #fff3cd; color: #8a6500; }
+  #espace-calc .tag-medium { background: #dbeafe; color: #1d4ed8; }
+  #espace-calc .tag-large { background: #e6f4ea; color: #1a7a3c; }
+  #espace-calc .tip { margin: 6px 0; padding-left: 4px; }
+  #espace-calc .disclaimer { font-size: 0.8em; color: #999; margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; }
+</style>
+<script>
+(function() {
+  const LANG = "fr";
+  const FT_TO_M = 0.3048;
+  const M2_TO_FT2 = 10.7639;
+  const M3_TO_FT3 = 35.3147;
+
+  const L = {
+    fr: {
+      unitLabel: "Unités :", metric: "Métrique (m)", imperial: "Impérial (pi)",
+      lengthLabel: "Longueur", widthLabel: "Largeur", heightLabel: "Hauteur sous plafond",
+      areaLabel: "Superficie au sol", volumeLabel: "Volume de la pièce", storageLabel: "Rangement mural estimé",
+      verySmallTag: "Très compact", smallTag: "Petit espace", mediumTag: "Espace moyen", largeTag: "Espace généreux",
+      verySmallTip: "Misez sur les meubles muraux, un lit escamotable ou une mezzanine pour libérer le sol au maximum.",
+      smallTip: "Privilégiez les meubles multifonctionnels (lit avec tiroirs, table pliante) et le rangement vertical.",
+      mediumTip: "Combinez rangements fermés et ouverts ; un dressing modulaire peut optimiser les coins.",
+      largeTip: "Organisez par zones plutôt que de maximiser la densité de rangement.",
+      heightHighTip: "Plafond haut : exploitez la hauteur avec des étagères jusqu'au plafond ou une mezzanine.",
+      heightLowTip: "Plafond bas : évitez d'empiler trop haut, misez sur le rangement horizontal et sous le lit.",
+      heightNormalTip: "Hauteur standard : un mix d'étagères murales à hauteur d'épaule fonctionne bien.",
+      disclaimer: "Estimation approximative basée sur les dimensions entrées — ne tient pas compte des portes, fenêtres, ni de la disposition réelle du mobilier.",
+      error: "Entre des dimensions valides pour voir les résultats."
+    },
+    en: {
+      unitLabel: "Units:", metric: "Metric (m)", imperial: "Imperial (ft)",
+      lengthLabel: "Length", widthLabel: "Width", heightLabel: "Ceiling height",
+      areaLabel: "Floor area", volumeLabel: "Room volume", storageLabel: "Estimated wall storage",
+      verySmallTag: "Very compact", smallTag: "Small space", mediumTag: "Medium space", largeTag: "Generous space",
+      verySmallTip: "Focus on wall-mounted furniture, a fold-down bed, or a mezzanine to free up floor space as much as possible.",
+      smallTip: "Prioritize multifunctional furniture (bed with drawers, folding table) and vertical storage.",
+      mediumTip: "Combine closed and open storage; a modular closet system can make the most of corners.",
+      largeTip: "Organize by zones rather than maximizing storage density.",
+      heightHighTip: "High ceiling: take advantage of the height with shelving up to the ceiling or a mezzanine.",
+      heightLowTip: "Low ceiling: avoid stacking too high, focus on horizontal storage and under-bed space.",
+      heightNormalTip: "Standard height: a mix of shoulder-height wall shelves works well.",
+      disclaimer: "Rough estimate based on the dimensions entered — does not account for doors, windows, or actual furniture layout.",
+      error: "Enter valid dimensions to see the results."
+    },
+    es: {
+      unitLabel: "Unidades:", metric: "Métrico (m)", imperial: "Imperial (pies)",
+      lengthLabel: "Largo", widthLabel: "Ancho", heightLabel: "Altura del techo",
+      areaLabel: "Superficie del suelo", volumeLabel: "Volumen de la habitación", storageLabel: "Almacenamiento en pared estimado",
+      verySmallTag: "Muy compacto", smallTag: "Espacio pequeño", mediumTag: "Espacio mediano", largeTag: "Espacio amplio",
+      verySmallTip: "Apuesta por muebles de pared, una cama abatible o un altillo para liberar el suelo al máximo.",
+      smallTip: "Prioriza los muebles multifuncionales (cama con cajones, mesa plegable) y el almacenamiento vertical.",
+      mediumTip: "Combina almacenamiento cerrado y abierto; un armario modular puede aprovechar las esquinas.",
+      largeTip: "Organiza por zonas en lugar de maximizar la densidad de almacenamiento.",
+      heightHighTip: "Techo alto: aprovecha la altura con estanterías hasta el techo o un altillo.",
+      heightLowTip: "Techo bajo: evita apilar demasiado alto, apuesta por el almacenamiento horizontal y debajo de la cama.",
+      heightNormalTip: "Altura estándar: una combinación de estantes de pared a la altura del hombro funciona bien.",
+      disclaimer: "Estimación aproximada basada en las dimensiones ingresadas — no considera puertas, ventanas ni la disposición real del mobiliario.",
+      error: "Ingresa dimensiones válidas para ver los resultados."
+    }
+  };
+
+  function computeResults(lengthIn, widthIn, heightIn, unit) {
+    const lengthM = unit === "imperial" ? lengthIn * FT_TO_M : lengthIn;
+    const widthM = unit === "imperial" ? widthIn * FT_TO_M : widthIn;
+    const heightM = unit === "imperial" ? heightIn * FT_TO_M : heightIn;
+
+    const areaM2 = lengthM * widthM;
+    const volumeM3 = areaM2 * heightM;
+
+    const perimeterM = 2 * (lengthM + widthM);
+    const usableWallM = perimeterM * 0.8; // ~20% occupé par portes/fenêtres/mobilier existant
+    const shelfDepthM = 0.3;
+    const shelfHeightM = Math.max(Math.min(heightM - 0.3, 2.0), 0);
+    const storageVolumeM3 = usableWallM * shelfDepthM * shelfHeightM;
+
+    let sizeCategory;
+    if (areaM2 < 8) sizeCategory = "verysmall";
+    else if (areaM2 < 15) sizeCategory = "small";
+    else if (areaM2 < 25) sizeCategory = "medium";
+    else sizeCategory = "large";
+
+    let heightCategory;
+    if (heightM >= 2.6) heightCategory = "high";
+    else if (heightM < 2.3) heightCategory = "low";
+    else heightCategory = "normal";
+
+    return { areaM2, volumeM3, storageVolumeM3, sizeCategory, heightCategory };
+  }
+
+  function render() {
+    const t = L[LANG] || L.fr;
+    const root = document.getElementById("espace-calc");
+    root.innerHTML = `
+      <div class="field">
+        <label>${t.unitLabel}</label>
+        <select id="espace-unit">
+          <option value="metric">${t.metric}</option>
+          <option value="imperial">${t.imperial}</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="field"><label>${t.lengthLabel} (<span id="unit-suffix-1">m</span>)</label><input type="number" id="espace-length" min="0" step="0.1" value="4"></div>
+        <div class="field"><label>${t.widthLabel} (<span id="unit-suffix-2">m</span>)</label><input type="number" id="espace-width" min="0" step="0.1" value="3"></div>
+        <div class="field"><label>${t.heightLabel} (<span id="unit-suffix-3">m</span>)</label><input type="number" id="espace-height" min="0" step="0.1" value="2.4"></div>
+      </div>
+      <div id="espace-result"></div>
+      <div class="disclaimer">${t.disclaimer}</div>
+    `;
+
+    const unitSelect = document.getElementById("espace-unit");
+    const lengthInput = document.getElementById("espace-length");
+    const widthInput = document.getElementById("espace-width");
+    const heightInput = document.getElementById("espace-height");
+    const resultDiv = document.getElementById("espace-result");
+    const suffixes = [document.getElementById("unit-suffix-1"), document.getElementById("unit-suffix-2"), document.getElementById("unit-suffix-3")];
+
+    function update() {
+      const unit = unitSelect.value;
+      const suffix = unit === "imperial" ? "pi" : "m";
+      suffixes.forEach(el => el.textContent = suffix);
+
+      const lengthIn = parseFloat(lengthInput.value);
+      const widthIn = parseFloat(widthInput.value);
+      const heightIn = parseFloat(heightInput.value);
+      if (!(lengthIn > 0) || !(widthIn > 0) || !(heightIn > 0)) {
+        resultDiv.innerHTML = `<p>${t.error}</p>`;
+        return;
+      }
+
+      const r = computeResults(lengthIn, widthIn, heightIn, unit);
+      const areaDisplay = unit === "imperial" ? (r.areaM2 * M2_TO_FT2).toFixed(1) + " pi²" : r.areaM2.toFixed(1) + " m²";
+      const volumeDisplay = unit === "imperial" ? (r.volumeM3 * M3_TO_FT3).toFixed(1) + " pi³" : r.volumeM3.toFixed(1) + " m³";
+      const storageDisplay = unit === "imperial" ? (r.storageVolumeM3 * M3_TO_FT3).toFixed(1) + " pi³" : r.storageVolumeM3.toFixed(1) + " m³";
+
+      const sizeTagClass = { verysmall: "tag-verysmall", small: "tag-small", medium: "tag-medium", large: "tag-large" }[r.sizeCategory];
+      const sizeTagText = { verysmall: t.verySmallTag, small: t.smallTag, medium: t.mediumTag, large: t.largeTag }[r.sizeCategory];
+      const sizeTip = { verysmall: t.verySmallTip, small: t.smallTip, medium: t.mediumTip, large: t.largeTip }[r.sizeCategory];
+      const heightTip = { high: t.heightHighTip, low: t.heightLowTip, normal: t.heightNormalTip }[r.heightCategory];
+
+      resultDiv.innerHTML = `
+        <div class="stats">
+          <div class="stat"><div class="value">${areaDisplay}</div><div class="caption">${t.areaLabel}</div></div>
+          <div class="stat"><div class="value">${volumeDisplay}</div><div class="caption">${t.volumeLabel}</div></div>
+          <div class="stat"><div class="value">${storageDisplay}</div><div class="caption">${t.storageLabel}</div></div>
+        </div>
+        <div class="tag ${sizeTagClass}">${sizeTagText}</div>
+        <p class="tip">${sizeTip}</p>
+        <p class="tip">${heightTip}</p>
+      `;
+    }
+
+    unitSelect.addEventListener("change", update);
+    lengthInput.addEventListener("input", update);
+    widthInput.addEventListener("input", update);
+    heightInput.addEventListener("input", update);
+    update();
+  }
+
+  render();
+})();
+</script>
+
+</article>
+</main>
+<footer><a href="https://simonlinuxia.github.io/mes-niches-site/fr/">Accueil</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/fr/a-propos.html">À propos</a></footer>
+</body>
+</html>
