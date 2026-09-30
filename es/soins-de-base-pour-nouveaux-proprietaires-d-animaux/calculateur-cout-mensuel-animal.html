@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora: costo mensual real según el tipo de mascota</title>
+<meta name="description" content="Estima el costo mensual real (alimento, higiene, veterinario) y los costos iniciales según el tipo de mascota.">
+<link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/es/soins-de-base-pour-nouveaux-proprietaires-d-animaux/calculateur-cout-mensuel-animal.html">
+<!--HREFLANG_START-->
+
+<!--HREFLANG_END-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora: costo mensual real según el tipo de mascota">
+<meta property="og:description" content="Estima el costo mensual real (alimento, higiene, veterinario) y los costos iniciales según el tipo de mascota.">
+<meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/es/soins-de-base-pour-nouveaux-proprietaires-d-animaux/calculateur-cout-mensuel-animal.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculadora: costo mensual real según el tipo de mascota">
+<meta name="twitter:description" content="Estima el costo mensual real (alimento, higiene, veterinario) y los costos iniciales según el tipo de mascota.">
+<meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
+
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.8em; }
+  a { color: #0a5; }
+  nav.breadcrumb { margin-bottom: 24px; font-size: 0.85em; color: #666; }
+  nav.breadcrumb a { color: #666; }
+  time { color: #888; font-size: 0.85em; }
+  .related { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+  .related h2 { font-size: 1.1em; }
+  footer { margin-top: 60px; font-size: 0.8em; color: #999; }
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><a href="https://simonlinuxia.github.io/mes-niches-site/es/">Inicio</a> › <a href="./">cuidados básicos para nuevos dueños de mascotas</a> › <span>Calculadora: costo mensual</span></nav>
+<main>
+<article>
+<h1>Calculadora: costo mensual real según el tipo de mascota</h1>
+<p>Elige un tipo de mascota para estimar su costo mensual real (alimento, higiene, veterinario básico) y los costos iniciales a considerar.</p>
+
+<div id="animal-calc"></div>
+<style>
+  #animal-calc { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 24px 0; }
+  #animal-calc select { width: 100%; padding: 8px; font-size: 1em; margin-bottom: 16px; }
+  #animal-calc table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-bottom: 12px; }
+  #animal-calc td, #animal-calc th { padding: 6px 4px; border-bottom: 1px solid #eee; text-align: left; }
+  #animal-calc td:last-child, #animal-calc th:last-child { text-align: right; }
+  #animal-calc .stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+  #animal-calc .stat { background: #f4f4f4; border-radius: 6px; padding: 10px 14px; flex: 1; min-width: 140px; }
+  #animal-calc .stat .value { font-size: 1.3em; font-weight: bold; color: #0a5; }
+  #animal-calc .stat .caption { font-size: 0.8em; color: #666; }
+  #animal-calc .disclaimer { font-size: 0.8em; color: #999; margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; }
+</style>
+<script>
+(function() {
+  const LANG = "es";
+
+  const PETS = [
+    { id: "dog",     label: { fr: "Chien", en: "Dog", es: "Perro" },
+      monthly: { food: 60, hygiene: 15, vet: 40 }, startup: 300 },
+    { id: "cat",     label: { fr: "Chat", en: "Cat", es: "Gato" },
+      monthly: { food: 40, hygiene: 20, vet: 30 }, startup: 200 },
+    { id: "rabbit",  label: { fr: "Lapin", en: "Rabbit", es: "Conejo" },
+      monthly: { food: 35, hygiene: 15, vet: 20 }, startup: 250 },
+    { id: "hamster", label: { fr: "Hamster / petit rongeur", en: "Hamster / small rodent", es: "Hámster / pequeño roedor" },
+      monthly: { food: 10, hygiene: 10, vet: 5 }, startup: 100 },
+    { id: "bird",    label: { fr: "Oiseau (ex. perruche)", en: "Bird (e.g. parakeet)", es: "Ave (ej. periquito)" },
+      monthly: { food: 15, hygiene: 8, vet: 10 }, startup: 150 }
+  ];
+
+  const L = {
+    fr: { choose: "Choisis un type d'animal :", food: "Nourriture", hygiene: "Hygiène / litière", vet: "Vétérinaire de base (étalé sur l'année)",
+          monthlyTotal: "Total mensuel estimé", startupTotal: "Frais de départ estimés (une fois)",
+          disclaimer: "Estimations génériques (moyennes approximatives au Canada) — varient selon la race, la taille, la région et les choix de produits. Ne remplace pas un devis vétérinaire réel." },
+    en: { choose: "Choose a type of animal:", food: "Food", hygiene: "Hygiene / litter", vet: "Basic vet care (spread over the year)",
+          monthlyTotal: "Estimated monthly total", startupTotal: "Estimated startup costs (one-time)",
+          disclaimer: "Generic estimates (rough Canadian averages) — vary by breed, size, region, and product choices. Does not replace a real veterinary quote." },
+    es: { choose: "Elige un tipo de animal:", food: "Alimento", hygiene: "Higiene / arena", vet: "Veterinario básico (repartido en el año)",
+          monthlyTotal: "Total mensual estimado", startupTotal: "Costos iniciales estimados (una vez)",
+          disclaimer: "Estimaciones genéricas (promedios aproximados en Canadá) — varían según la raza, el tamaño, la región y las elecciones de productos. No reemplaza una cotización veterinaria real." }
+  };
+
+  function render() {
+    const t = L[LANG] || L.fr;
+    const root = document.getElementById("animal-calc");
+    const select = document.createElement("select");
+    select.innerHTML = PETS.map(p => `<option value="${p.id}">${p.label[LANG] || p.label.fr}</option>`).join("");
+    const resultDiv = document.createElement("div");
+
+    function update() {
+      const pet = PETS.find(p => p.id === select.value);
+      const monthlyTotal = pet.monthly.food + pet.monthly.hygiene + pet.monthly.vet;
+      resultDiv.innerHTML = `
+        <table>
+          <tr><td>${t.food}</td><td>${pet.monthly.food.toFixed(2)} $</td></tr>
+          <tr><td>${t.hygiene}</td><td>${pet.monthly.hygiene.toFixed(2)} $</td></tr>
+          <tr><td>${t.vet}</td><td>${pet.monthly.vet.toFixed(2)} $</td></tr>
+        </table>
+        <div class="stats">
+          <div class="stat"><div class="value">${monthlyTotal.toFixed(2)} $</div><div class="caption">${t.monthlyTotal}</div></div>
+          <div class="stat"><div class="value">${pet.startup.toFixed(2)} $</div><div class="caption">${t.startupTotal}</div></div>
+        </div>
+        <div class="disclaimer">${t.disclaimer}</div>
+      `;
+    }
+
+    select.addEventListener("change", update);
+    root.innerHTML = `<div style="margin-bottom:8px;font-weight:600">${t.choose}</div>`;
+    root.appendChild(select);
+    root.appendChild(resultDiv);
+    update();
+  }
+
+  render();
+})();
+</script>
+
+</article>
+</main>
+<footer><a href="https://simonlinuxia.github.io/mes-niches-site/es/">Inicio</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/es/acerca-de.html">Acerca de</a></footer>
+</body>
+</html>
