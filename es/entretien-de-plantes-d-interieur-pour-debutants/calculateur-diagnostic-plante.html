@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora: por qué mi planta amarillea y frecuencia de riego</title>
+<meta name="description" content="Diagnóstico rápido para entender por qué las hojas de tu planta amarillean, seguido de la frecuencia de riego recomendada para tu planta.">
+<link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/es/entretien-de-plantes-d-interieur-pour-debutants/calculateur-diagnostic-plante.html">
+<!--HREFLANG_START-->
+
+<!--HREFLANG_END-->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculadora: por qué mi planta amarillea y frecuencia de riego">
+<meta property="og:description" content="Diagnóstico rápido para entender por qué las hojas de tu planta amarillean, seguido de la frecuencia de riego recomendada para tu planta.">
+<meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/es/entretien-de-plantes-d-interieur-pour-debutants/calculateur-diagnostic-plante.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Calculadora: por qué mi planta amarillea y frecuencia de riego">
+<meta name="twitter:description" content="Diagnóstico rápido para entender por qué las hojas de tu planta amarillean, seguido de la frecuencia de riego recomendada para tu planta.">
+<meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
+
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.8em; }
+  a { color: #0a5; }
+  nav.breadcrumb { margin-bottom: 24px; font-size: 0.85em; color: #666; }
+  nav.breadcrumb a { color: #666; }
+  time { color: #888; font-size: 0.85em; }
+  .related { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
+  .related h2 { font-size: 1.1em; }
+  footer { margin-top: 60px; font-size: 0.8em; color: #999; }
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><a href="https://simonlinuxia.github.io/mes-niches-site/es/">Inicio</a> › <a href="./">cuidado de plantas de interior para principiantes</a> › <span>Calculadora: diagnóstico</span></nav>
+<main>
+<article>
+<h1>Calculadora: por qué mi planta amarillea y frecuencia de riego</h1>
+<p>Responde 4 preguntas para un diagnóstico rápido de tus hojas amarillas, seguido de la frecuencia de riego recomendada para tu planta.</p>
+
+<div id="plante-calc"></div>
+<style>
+  #plante-calc { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 24px 0; }
+  #plante-calc label { display: block; font-weight: 600; margin-bottom: 4px; margin-top: 12px; }
+  #plante-calc select { width: 100%; padding: 8px; font-size: 1em; margin-bottom: 4px; }
+  #plante-calc .result { margin-top: 20px; padding-top: 16px; border-top: 1px solid #eee; }
+  #plante-calc .diagnostic { background: #fff3cd; border-radius: 6px; padding: 12px 14px; margin-bottom: 14px; }
+  #plante-calc .diagnostic.ok { background: #e6f4ea; }
+  #plante-calc .diagnostic .label { font-weight: 700; margin-bottom: 4px; }
+  #plante-calc .reco { background: #f4f4f4; border-radius: 6px; padding: 12px 14px; }
+  #plante-calc .reco dt { font-weight: 600; margin-top: 8px; }
+  #plante-calc .reco dt:first-child { margin-top: 0; }
+  #plante-calc .reco dd { margin: 2px 0 0 0; }
+  #plante-calc .disclaimer { font-size: 0.8em; color: #999; margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; }
+</style>
+<script>
+(function() {
+  const LANG = "es";
+
+  const PLANTS = [
+    { id: "pothos", categorieLumiere: "faible_ok",
+      nom: { fr: "pothos", en: "pothos", es: "pothos" },
+      lumiere: { fr: "indirecte, tolère la faible lumière ; le soleil direct brûle les feuilles", en: "indirect light, tolerates low light; direct sun scorches the leaves", es: "luz indirecta, tolera la poca luz; el sol directo quema las hojas" },
+      arrosage: { fr: "quand les 2 à 3 premiers cm de terreau sont secs", en: "when the top 2 to 3 cm (about 1 inch) of soil are dry", es: "cuando los primeros 2 a 3 cm de tierra estén secos" } },
+    { id: "zamioculcas", categorieLumiere: "flexible",
+      nom: { fr: "zamioculcas", en: "zamioculcas", es: "zamioculcas" },
+      lumiere: { fr: "tolère la faible lumière comme la lumière vive ; préfère la lumière indirecte", en: "tolerates both low and bright light; prefers indirect light", es: "tolera tanto la poca luz como la luz intensa; prefiere la luz indirecta" },
+      arrosage: { fr: "espacé : attendre que le terreau soit sec sur toute la profondeur, il stocke l'eau dans ses rhizomes", en: "infrequent: let the soil dry out completely, it stores water in its rhizomes", es: "poco frecuente: deja que la tierra se seque por completo, almacena agua en sus rizomas" } },
+    { id: "sansevieria", categorieLumiere: "flexible",
+      nom: { fr: "sansevieria", en: "sansevieria", es: "sansevieria" },
+      lumiere: { fr: "s'adapte de la faible lumière à la lumière vive", en: "adapts from low light to bright light", es: "se adapta desde poca luz hasta luz intensa" },
+      arrosage: { fr: "rare : laisser sécher le terreau entre deux arrosages, l'excès d'eau fait pourrir les racines", en: "infrequent: let the soil dry between waterings, overwatering rots the roots", es: "poco frecuente: deja secar la tierra entre riegos, el exceso de agua pudre las raíces" } },
+    { id: "monstera", categorieLumiere: "indirecte",
+      nom: { fr: "monstera", en: "monstera", es: "monstera" },
+      lumiere: { fr: "lumière vive mais indirecte ; le soleil direct brûle les feuilles", en: "bright but indirect light; direct sun scorches the leaves", es: "luz intensa pero indirecta; el sol directo quema las hojas" },
+      arrosage: { fr: "quand le tiers supérieur du terreau est sec", en: "when the top third of the soil is dry", es: "cuando el tercio superior de la tierra esté seco" } },
+    { id: "chlorophytum", categorieLumiere: "indirecte",
+      nom: { fr: "chlorophytum", en: "chlorophytum", es: "chlorophytum" },
+      lumiere: { fr: "lumière vive indirecte ; le soleil direct brûle les pointes des feuilles", en: "bright indirect light; direct sun scorches the leaf tips", es: "luz intensa indirecta; el sol directo quema las puntas de las hojas" },
+      arrosage: { fr: "quand le dessus du terreau est sec", en: "when the top of the soil is dry", es: "cuando la parte superior de la tierra esté seca" } },
+    { id: "spathiphyllum", categorieLumiere: "faible_ok",
+      nom: { fr: "spathiphyllum", en: "spathiphyllum", es: "spathiphyllum" },
+      lumiere: { fr: "mi-ombre à lumière indirecte, tolère la faible lumière ; le soleil direct brûle les feuilles", en: "partial shade to indirect light, tolerates low light; direct sun scorches the leaves", es: "media sombra a luz indirecta, tolera la poca luz; el sol directo quema las hojas" },
+      arrosage: { fr: "quand le dessus du terreau est sec ; les feuilles tombantes signalent souvent un manque d'eau", en: "when the top of the soil is dry; drooping leaves often signal thirst", es: "cuando la parte superior de la tierra esté seca; las hojas caídas suelen indicar falta de agua" } },
+    { id: "ficus_elastica", categorieLumiere: "indirecte",
+      nom: { fr: "ficus elastica", en: "ficus elastica", es: "ficus elastica" },
+      lumiere: { fr: "lumière vive indirecte ; le soleil direct brûle les feuilles", en: "bright indirect light; direct sun scorches the leaves", es: "luz intensa indirecta; el sol directo quema las hojas" },
+      arrosage: { fr: "quand les 2 à 3 premiers cm de terreau sont secs", en: "when the top 2 to 3 cm (about 1 inch) of soil are dry", es: "cuando los primeros 2 a 3 cm de tierra estén secos" } },
+    { id: "calathea", categorieLumiere: "indirecte",
+      nom: { fr: "calathea", en: "calathea", es: "calathea" },
+      lumiere: { fr: "lumière indirecte ; le soleil direct décolore et brûle les feuilles", en: "indirect light; direct sun fades and scorches the leaves", es: "luz indirecta; el sol directo decolora y quema las hojas" },
+      arrosage: { fr: "garder le terreau légèrement humide, sans détremper", en: "keep the soil lightly moist, never soggy", es: "mantener la tierra ligeramente húmeda, sin encharcar" } },
+    { id: "philodendron", categorieLumiere: "indirecte",
+      nom: { fr: "philodendron", en: "philodendron", es: "filodendro" },
+      lumiere: { fr: "lumière indirecte ; le soleil direct brûle les feuilles", en: "indirect light; direct sun scorches the leaves", es: "luz indirecta; el sol directo quema las hojas" },
+      arrosage: { fr: "quand les 2 à 3 premiers cm de terreau sont secs", en: "when the top 2 to 3 cm (about 1 inch) of soil are dry", es: "cuando los primeros 2 a 3 cm de tierra estén secos" } },
+    { id: "dracaena", categorieLumiere: "indirecte",
+      nom: { fr: "dracaena", en: "dracaena", es: "dracaena" },
+      lumiere: { fr: "lumière indirecte moyenne ; le soleil direct brûle les feuilles", en: "medium indirect light; direct sun scorches the leaves", es: "luz indirecta media; el sol directo quema las hojas" },
+      arrosage: { fr: "quand la moitié supérieure du terreau est sèche", en: "when the top half of the soil is dry", es: "cuando la mitad superior de la tierra esté seca" } },
+    { id: "fougere", categorieLumiere: "indirecte",
+      nom: { fr: "fougere de boston", en: "boston fern", es: "helecho de boston" },
+      lumiere: { fr: "lumière indirecte, humidité ambiante élevée ; le soleil direct la dessèche", en: "indirect light, high humidity; direct sun dries it out", es: "luz indirecta, alta humedad ambiental; el sol directo la reseca" },
+      arrosage: { fr: "garder le terreau constamment légèrement humide", en: "keep the soil consistently lightly moist", es: "mantener la tierra siempre ligeramente húmeda" } },
+    { id: "orchidee", categorieLumiere: "indirecte",
+      nom: { fr: "orchidee", en: "orchid", es: "orquidea" },
+      lumiere: { fr: "lumière vive indirecte ; le soleil direct brûle les feuilles", en: "bright indirect light; direct sun scorches the leaves", es: "luz intensa indirecta; el sol directo quema las hojas" },
+      arrosage: { fr: "quand le substrat (écorces) est sec, sans laisser d'eau stagner dans le pot", en: "when the bark substrate is dry, never leave water standing in the pot", es: "cuando el sustrato (corteza) esté seco, sin dejar agua estancada en la maceta" } },
+    { id: "aloe_vera", categorieLumiere: "soleil",
+      nom: { fr: "aloe vera", en: "aloe vera", es: "aloe vera" },
+      lumiere: { fr: "lumière très vive, supporte le soleil direct une fois habituée", en: "very bright light, tolerates direct sun once acclimated", es: "luz muy intensa, tolera el sol directo una vez aclimatada" },
+      arrosage: { fr: "rare : laisser sécher complètement le terreau entre deux arrosages", en: "infrequent: let the soil dry out completely between waterings", es: "poco frecuente: dejar secar la tierra por completo entre riegos" } },
+    { id: "crassula", categorieLumiere: "soleil",
+      nom: { fr: "crassula", en: "crassula", es: "crasula" },
+      lumiere: { fr: "lumière très vive, plusieurs heures de soleil direct possibles", en: "very bright light, several hours of direct sun are fine", es: "luz muy intensa, varias horas de sol directo están bien" },
+      arrosage: { fr: "rare : laisser sécher le terreau entre deux arrosages", en: "infrequent: let the soil dry between waterings", es: "poco frecuente: dejar secar la tierra entre riegos" } },
+    { id: "cactus", categorieLumiere: "soleil",
+      nom: { fr: "cactus", en: "cactus", es: "cactus" },
+      lumiere: { fr: "lumière très vive, soleil direct bienvenu", en: "very bright light, direct sun welcome", es: "luz muy intensa, el sol directo es bienvenido" },
+      arrosage: { fr: "rare : laisser sécher complètement le terreau, encore moins l'hiver", en: "infrequent: let the soil dry out completely, even less in winter", es: "poco frecuente: dejar secar la tierra por completo, aún menos en invierno" } }
+  ];
+
+  const L = {
+    fr: {
+      qPlant: "Quelle plante avez-vous ?",
+      qLight: "Où est-elle placée ?", lightDirect: "Soleil direct plusieurs heures/jour", lightIndirect: "Lumière vive mais indirecte", lightLow: "Coin plus sombre de la pièce",
+      qSoil: "Quand vous arrosez habituellement, l'état du terreau est :", soilAlwaysMoist: "Toujours humide, je n'attends pas qu'il sèche", soilTopDry: "Le dessus est sec mais humide en profondeur", soilFullyDry: "Complètement sec, parfois depuis longtemps",
+      qYellow: "Quelles feuilles jaunissent ?", yellowOldest: "Seulement les plus vieilles feuilles du bas", yellowMixed: "Un peu partout, jeunes et vieilles", yellowTips: "Seulement les pointes ou les bords",
+      diagAging: "Vieillissement naturel — rien d'inquiétant", diagAgingDetail: "Une vieille feuille du bas qui jaunit puis tombe est normal : la plante recycle ses ressources vers les nouvelles feuilles.",
+      diagOverwater: "Surarrosage probable", diagOverwaterDetail: "Un terreau toujours humide prive les racines d'oxygène et peut causer du jaunissement, voire de la pourriture. Laissez sécher davantage entre les arrosages.",
+      diagSun: "Trop de soleil direct probable", diagSunDetail: "Cette plante tolère mal le soleil direct selon sa fiche — un jaunissement (parfois avec des taches brûlées) peut en résulter. Éloignez-la un peu de la fenêtre ou ajoutez un voilage.",
+      diagUnderwater: "Sous-arrosage probable", diagUnderwaterDetail: "Cette plante a besoin d'un arrosage plus régulier que ce qu'elle reçoit actuellement selon vos réponses. Un terreau qui reste sec longtemps peut causer du jaunissement.",
+      diagEnviron: "Stress environnemental possible", diagEnvironDetail: "Le jaunissement aux pointes ou aux bords évoque souvent l'air sec, un courant d'air, ou l'accumulation de minéraux de l'eau du robinet — moins souvent un problème de lumière ou d'arrosage direct.",
+      diagUnknown: "Cause incertaine", diagUnknownDetail: "Vos réponses ne pointent pas clairement vers une cause unique. D'autres facteurs sont possibles : manque de nutriments, changement récent d'environnement, ou simplement le temps que la plante s'adapte.",
+      recoTitle: "Recommandations pour cette plante", recoLight: "Lumière", recoWater: "Arrosage",
+      disclaimer: "Diagnostic basé sur des repères horticoles courants — ne remplace pas l'observation directe de la plante ni l'avis d'un(e) spécialiste en cas de doute persistant."
+    },
+    en: {
+      qPlant: "Which plant do you have?",
+      qLight: "Where is it placed?", lightDirect: "Direct sun several hours/day", lightIndirect: "Bright but indirect light", lightLow: "Darker corner of the room",
+      qSoil: "When you usually water, the soil is:", soilAlwaysMoist: "Always moist, I don't wait for it to dry", soilTopDry: "Top is dry but moist underneath", soilFullyDry: "Completely dry, sometimes for a while",
+      qYellow: "Which leaves are yellowing?", yellowOldest: "Only the oldest bottom leaves", yellowMixed: "A bit everywhere, young and old", yellowTips: "Only the tips or edges",
+      diagAging: "Natural aging — nothing to worry about", diagAgingDetail: "An old bottom leaf yellowing then dropping is normal: the plant is recycling resources toward new leaves.",
+      diagOverwater: "Overwatering likely", diagOverwaterDetail: "Soil that stays moist deprives roots of oxygen and can cause yellowing or even rot. Let it dry out more between waterings.",
+      diagSun: "Too much direct sun likely", diagSunDetail: "This plant doesn't tolerate direct sun well according to its profile — yellowing (sometimes with scorched patches) can result. Move it a bit further from the window or add sheer curtains.",
+      diagUnderwater: "Underwatering likely", diagUnderwaterDetail: "This plant needs more regular watering than it's currently getting based on your answers. Soil staying dry for a long time can cause yellowing.",
+      diagEnviron: "Possible environmental stress", diagEnvironDetail: "Yellowing at the tips or edges often points to dry air, a draft, or mineral buildup from tap water — less often a light or direct watering issue.",
+      diagUnknown: "Uncertain cause", diagUnknownDetail: "Your answers don't clearly point to a single cause. Other factors are possible: nutrient deficiency, a recent change in environment, or simply the plant adjusting.",
+      recoTitle: "Recommendations for this plant", recoLight: "Light", recoWater: "Watering",
+      disclaimer: "Diagnosis based on common horticultural guidelines — does not replace direct observation of the plant or expert advice if in doubt."
+    },
+    es: {
+      qPlant: "¿Qué planta tienes?",
+      qLight: "¿Dónde está ubicada?", lightDirect: "Sol directo varias horas al día", lightIndirect: "Luz intensa pero indirecta", lightLow: "Rincón más oscuro de la habitación",
+      qSoil: "Cuando riegas habitualmente, el estado de la tierra es:", soilAlwaysMoist: "Siempre húmeda, no espero a que se seque", soilTopDry: "La superficie está seca pero húmeda debajo", soilFullyDry: "Completamente seca, a veces por un tiempo",
+      qYellow: "¿Qué hojas están amarillando?", yellowOldest: "Solo las hojas más viejas de abajo", yellowMixed: "Un poco por todas partes, jóvenes y viejas", yellowTips: "Solo las puntas o los bordes",
+      diagAging: "Envejecimiento natural — nada de qué preocuparse", diagAgingDetail: "Una hoja vieja de abajo que amarillea y luego cae es normal: la planta recicla recursos hacia las hojas nuevas.",
+      diagOverwater: "Exceso de riego probable", diagOverwaterDetail: "Una tierra siempre húmeda priva a las raíces de oxígeno y puede causar amarillamiento o incluso pudrición. Deja secar más entre riegos.",
+      diagSun: "Demasiado sol directo probable", diagSunDetail: "Esta planta no tolera bien el sol directo según su ficha — puede causar amarillamiento (a veces con manchas quemadas). Aléjala un poco de la ventana o agrega una cortina fina.",
+      diagUnderwater: "Falta de riego probable", diagUnderwaterDetail: "Esta planta necesita un riego más regular del que recibe actualmente según tus respuestas. Una tierra que permanece seca mucho tiempo puede causar amarillamiento.",
+      diagEnviron: "Posible estrés ambiental", diagEnvironDetail: "El amarillamiento en las puntas o los bordes suele indicar aire seco, corrientes de aire, o acumulación de minerales del agua del grifo — con menos frecuencia un problema de luz o riego directo.",
+      diagUnknown: "Causa incierta", diagUnknownDetail: "Tus respuestas no apuntan claramente a una sola causa. Otros factores son posibles: falta de nutrientes, un cambio reciente de entorno, o simplemente el tiempo de adaptación de la planta.",
+      recoTitle: "Recomendaciones para esta planta", recoLight: "Luz", recoWater: "Riego",
+      disclaimer: "Diagnóstico basado en pautas hortícolas comunes — no reemplaza la observación directa de la planta ni el consejo de un especialista si la duda persiste."
+    }
+  };
+
+  function diagnose(plant, lightAnswer, soilAnswer, yellowAnswer) {
+    const needsRegularMoisture = plant.categorieLumiere === "indirecte" || plant.categorieLumiere === "faible_ok";
+    const sunSensitive = plant.categorieLumiere === "indirecte" || plant.categorieLumiere === "faible_ok";
+
+    if (yellowAnswer === "oldest") return { key: "aging", ok: true };
+    if (soilAnswer === "alwaysMoist") return { key: "overwater", ok: false };
+    if (lightAnswer === "direct" && sunSensitive) return { key: "sun", ok: false };
+    if (soilAnswer === "fullyDry" && needsRegularMoisture) return { key: "underwater", ok: false };
+    if (yellowAnswer === "tips") return { key: "environ", ok: false };
+    return { key: "unknown", ok: false };
+  }
+
+  function render() {
+    const t = L[LANG] || L.fr;
+    const root = document.getElementById("plante-calc");
+    root.innerHTML = `
+      <label>${t.qPlant}</label>
+      <select id="p-plant">${PLANTS.map(p => `<option value="${p.id}">${p.nom[LANG] || p.nom.fr}</option>`).join("")}</select>
+
+      <label>${t.qLight}</label>
+      <select id="p-light">
+        <option value="direct">${t.lightDirect}</option>
+        <option value="indirect">${t.lightIndirect}</option>
+        <option value="low">${t.lightLow}</option>
+      </select>
+
+      <label>${t.qSoil}</label>
+      <select id="p-soil">
+        <option value="alwaysMoist">${t.soilAlwaysMoist}</option>
+        <option value="topDry">${t.soilTopDry}</option>
+        <option value="fullyDry">${t.soilFullyDry}</option>
+      </select>
+
+      <label>${t.qYellow}</label>
+      <select id="p-yellow">
+        <option value="oldest">${t.yellowOldest}</option>
+        <option value="mixed">${t.yellowMixed}</option>
+        <option value="tips">${t.yellowTips}</option>
+      </select>
+
+      <div id="p-result" class="result"></div>
+      <div class="disclaimer">${t.disclaimer}</div>
+    `;
+
+    const plantSel = document.getElementById("p-plant");
+    const lightSel = document.getElementById("p-light");
+    const soilSel = document.getElementById("p-soil");
+    const yellowSel = document.getElementById("p-yellow");
+    const resultDiv = document.getElementById("p-result");
+
+    const diagLabels = {
+      aging: [t.diagAging, t.diagAgingDetail], overwater: [t.diagOverwater, t.diagOverwaterDetail],
+      sun: [t.diagSun, t.diagSunDetail], underwater: [t.diagUnderwater, t.diagUnderwaterDetail],
+      environ: [t.diagEnviron, t.diagEnvironDetail], unknown: [t.diagUnknown, t.diagUnknownDetail]
+    };
+
+    function update() {
+      const plant = PLANTS.find(p => p.id === plantSel.value);
+      const diag = diagnose(plant, lightSel.value, soilSel.value, yellowSel.value);
+      const [label, detail] = diagLabels[diag.key];
+      resultDiv.innerHTML = `
+        <div class="diagnostic ${diag.ok ? "ok" : ""}">
+          <div class="label">${label}</div>
+          <div>${detail}</div>
+        </div>
+        <dl class="reco">
+          <div style="font-weight:700;margin-bottom:6px">${t.recoTitle} (${plant.nom[LANG] || plant.nom.fr})</div>
+          <dt>${t.recoLight}</dt><dd>${plant.lumiere[LANG] || plant.lumiere.fr}</dd>
+          <dt>${t.recoWater}</dt><dd>${plant.arrosage[LANG] || plant.arrosage.fr}</dd>
+        </dl>
+      `;
+    }
+
+    plantSel.addEventListener("change", update);
+    lightSel.addEventListener("change", update);
+    soilSel.addEventListener("change", update);
+    yellowSel.addEventListener("change", update);
+    update();
+  }
+
+  render();
+})();
+</script>
+
+</article>
+</main>
+<footer><a href="https://simonlinuxia.github.io/mes-niches-site/es/">Inicio</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/es/acerca-de.html">Acerca de</a></footer>
+</body>
+</html>
