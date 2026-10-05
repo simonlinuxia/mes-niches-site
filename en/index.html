@@ -3,45 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practical Guides</title>
-<meta name="description" content="Practical Guides">
+<title>Everyday Guides</title>
+<meta name="description" content="Concrete answers to concrete questions, without detour. Practical guides for budget cooking, home organization, basic maintenance, and pet care.">
 <link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/en/">
 <!--HREFLANG_START-->
 
 <!--HREFLANG_END-->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Practical Guides">
-<meta property="og:description" content="Practical Guides">
+<meta property="og:title" content="Everyday Guides">
+<meta property="og:description" content="Concrete answers to concrete questions, without detour. Practical guides for budget cooking, home organization, basic maintenance, and pet care.">
 <meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/en/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Practical Guides">
-<meta name="twitter:description" content="Practical Guides">
+<meta name="twitter:title" content="Everyday Guides">
+<meta name="twitter:description" content="Concrete answers to concrete questions, without detour. Practical guides for budget cooking, home organization, basic maintenance, and pet care.">
 <meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
 
 <style>
   body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
   h1 { font-size: 1.8em; }
-  a { color: #0a5; }
+  a { color: #0f8f6f; }
   nav.breadcrumb { margin-bottom: 24px; font-size: 0.85em; color: #666; }
   nav.breadcrumb a { color: #666; }
   time { color: #888; font-size: 0.85em; }
   .related { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; }
   .related h2 { font-size: 1.1em; }
   footer { margin-top: 60px; font-size: 0.8em; color: #999; }
+  .eyebrow { font-family: "Courier New", monospace; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; color: #0f8f6f; }
 </style>
 </head>
 <body>
 <nav class="breadcrumb"><span>Home</span></nav>
 <main>
-<h1>Practical Guides</h1>
-<ul>
-<li><a href="entretien-de-base-auto-pour-non-mecaniciens/">Basic Car Maintenance for Non-Mechanics</a></li>
-<li><a href="entretien-de-plantes-d-interieur-pour-debutants/">Houseplant Care for Beginners</a></li>
-<li><a href="organisation-et-rangement-en-petit-espace/">Organizing and Storage in Small Spaces</a></li>
-<li><a href="repas-economiques-pour-etudiants/">Budget Meals for Students</a></li>
-<li><a href="soins-de-base-pour-nouveaux-proprietaires-d-animaux/">Basic Care for New Pet Owners</a></li>
-<li><a href="soins-des-animaux/">Pet Care</a></li>
-</ul>
+
+<style>
+  .eg-hero { display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 48px; }
+  .eg-hero-text { flex: 1; min-width: 280px; }
+  .eyebrow { font-family: "Courier New", monospace; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; color: #0f8f6f; margin-bottom: 8px; }
+  .eg-hero h1 { font-size: 2.6em; margin: 4px 0 16px; line-height: 1.1; }
+  .eg-quote { border-left: 3px solid #0f8f6f; padding-left: 14px; font-size: 1.15em; color: #333; margin-bottom: 16px; }
+  .eg-section { margin: 56px 0; }
+  .eg-section h2 { font-size: 1.8em; margin: 4px 0 8px; }
+  .eg-section .sub { color: #666; margin-bottom: 24px; }
+  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .value-card { border: 1px solid #e2e2e2; padding: 18px; border-radius: 4px; }
+  .value-card h3 { margin: 6px 0 8px; font-size: 1.1em; }
+  .value-card p { color: #555; font-size: 0.95em; margin: 0; }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .topic-card { display: block; border: 1px solid #e2e2e2; border-radius: 4px; overflow: hidden; text-decoration: none; color: inherit; }
+  .topic-card:hover { border-color: #0f8f6f; }
+  .topic-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #f4f4f4; }
+  .topic-body { padding: 16px; }
+  .topic-title { font-weight: 700; font-size: 1.1em; margin: 6px 0; color: #171718; }
+  .topic-desc { color: #555; font-size: 0.9em; }
+  .method-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: start; }
+  .method-item { margin-bottom: 20px; }
+  .method-tag { font-family: "Courier New", monospace; color: #0f8f6f; font-size: 0.85em; }
+  .dark-card { background: #17181a; color: #f2f2f2; padding: 28px; border-radius: 4px; }
+  .dark-card .bar { width: 32px; height: 3px; background: #0f8f6f; margin-bottom: 14px; }
+  .dark-card h3 { font-size: 1.2em; margin: 0 0 12px; }
+  .eg-hero-img { flex: 1; min-width: 280px; max-width: 480px; }
+  .eg-hero-img img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 4px; background: #f4f4f4; }
+  @media (max-width: 640px) { .method-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="eg-hero">
+  <div class="eg-hero-text">
+    <div class="eyebrow">// INDEPENDENT KNOWLEDGE PROJECT</div>
+    <h1>Everyday Guides</h1>
+    <div class="eg-quote">Concrete answers to concrete questions, without detour.</div>
+    <p>An independent project testing and documenting practical advice for daily life &mdash; budget cooking, home organization, basic maintenance, and pet care. Built for utility, clarity, and direct application.</p>
+  </div>
+  <div class="eg-hero-img">
+    <img src="https://simonlinuxia.github.io/mes-niches-site/home-images/hero.jpg" alt="Everyday Guides" loading="lazy">
+  </div>
+</div>
+
+<div class="eg-section">
+  <div class="eyebrow">01 / FOUNDATION</div>
+  <h2>Core Operating Values</h2>
+  <div class="sub">The principles behind every guide we publish.</div>
+  <div class="values-grid">
+    <div class="value-card"><h3>Practicality</h3><p>Every piece of advice is meant to be usable with everyday resources &mdash; if it can't be done realistically, it doesn't get published.</p></div>
+    <div class="value-card"><h3>Honesty</h3><p>Direct, factual answers without unnecessary padding or filler explanations &mdash; just what works and what doesn't.</p></div>
+    <div class="value-card"><h3>Simplicity</h3><p>Clear formatting and straightforward language, designed to deliver an answer when you actually need it.</p></div>
+  </div>
+</div>
+
+<div class="eg-section">
+  <div class="eyebrow">02 / FOCUS AREAS</div>
+  <h2>Topics We Cover</h2>
+  <div class="sub">Documenting actionable answers across key areas of everyday life.</div>
+  <div class="topics-grid">
+    <a class="topic-card" href="entretien-de-base-auto-pour-non-mecaniciens/">
+      <img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/auto.jpg" alt="Basic Car Maintenance" loading="lazy">
+      <div class="topic-body">
+        <div class="topic-cat eyebrow">CATEGORY / MAINTENANCE</div>
+        <div class="topic-title">Basic Car Maintenance</div>
+        <div class="topic-desc">Simple checks and fixes anyone can do, no garage required.</div>
+      </div>
+    </a>
+<a class="topic-card" href="entretien-de-plantes-d-interieur-pour-debutants/">
+      <img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/plants.jpg" alt="Houseplant Care" loading="lazy">
+      <div class="topic-body">
+        <div class="topic-cat eyebrow">CATEGORY / LIVING SPACE</div>
+        <div class="topic-title">Houseplant Care</div>
+        <div class="topic-desc">Systematic routines for watering, light positioning, soil management, and troubleshooting common plant vitality issues.</div>
+      </div>
+    </a>
+<a class="topic-card" href="organisation-et-rangement-en-petit-espace/">
+      <img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/organization.jpg" alt="Small Space Organization" loading="lazy">
+      <div class="topic-body">
+        <div class="topic-cat eyebrow">CATEGORY / ORGANIZATION</div>
+        <div class="topic-title">Small Space Organization</div>
+        <div class="topic-desc">Functional layout strategies and storage methods designed to maximize usable volume in compact living quarters.</div>
+      </div>
+    </a>
+<a class="topic-card" href="repas-economiques-pour-etudiants/">
+      <img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/meals.jpg" alt="Budget Meals" loading="lazy">
+      <div class="topic-body">
+        <div class="topic-cat eyebrow">CATEGORY / NUTRITION</div>
+        <div class="topic-title">Budget Meals</div>
+        <div class="topic-desc">Real-cost recipes and tricks to eat well on a student budget.</div>
+      </div>
+    </a>
+<a class="topic-card" href="soins-de-base-pour-nouveaux-proprietaires-d-animaux/">
+      <img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/pets.jpg" alt="New Pet Owner Basics" loading="lazy">
+      <div class="topic-body">
+        <div class="topic-cat eyebrow">CATEGORY / PETS</div>
+        <div class="topic-title">New Pet Owner Basics</div>
+        <div class="topic-desc">What to know before (and right after) bringing a pet home.</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="eg-section">
+  <div class="eyebrow">03 / QUALITY STANDARDS</div>
+  <h2>Direct Answers, Verified Accuracy</h2>
+  <div class="sub">Everyday Guides bridges actionable testing with modern review standards to deliver content that gets straight to the point.</div>
+  <div class="method-grid">
+    <div>
+      <div class="method-item"><div class="method-tag">[01]</div><h3>AI-Assisted Content Structuring</h3><p>Leveraging modern tooling to aggregate, summarize, and outline practical topics cleanly.</p></div>
+      <div class="method-item"><div class="method-tag">[02]</div><h3>Accuracy Review Process</h3><p>Every guide undergoes manual verification to ensure instructions are factual, realistic, and safe.</p></div>
+      <div class="method-item"><div class="method-tag">[03]</div><h3>Zero-Fluff Format</h3><p>Eliminating long-winded intro stories, ad interruptions, and unnecessary filler text.</p></div>
+    </div>
+    <div class="dark-card">
+      <div class="bar"></div>
+      <h3>Functional Utilitarian Positioning</h3>
+      <p>&quot;The goal is not to produce endless articles, but to build a reliable index of direct answers to everyday questions.&quot;</p>
+    </div>
+  </div>
+</div>
+
 </main>
 <footer><a href="https://simonlinuxia.github.io/mes-niches-site/en/">Home</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/en/about.html">About</a></footer>
 </body>
