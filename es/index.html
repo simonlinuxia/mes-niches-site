@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guías prácticas</title>
-<meta name="description" content="Guías prácticas">
+<meta name="description" content="Respuestas concretas a preguntas concretas, sin rodeos. Guías prácticas sobre cocina económica, organización del hogar, mantenimiento básico y cuidado de mascotas.">
 <link rel="canonical" href="https://simonlinuxia.github.io/mes-niches-site/es/">
 <!--HREFLANG_START-->
 
 <!--HREFLANG_END-->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Guías prácticas">
-<meta property="og:description" content="Guías prácticas">
+<meta property="og:description" content="Respuestas concretas a preguntas concretas, sin rodeos. Guías prácticas sobre cocina económica, organización del hogar, mantenimiento básico y cuidado de mascotas.">
 <meta property="og:url" content="https://simonlinuxia.github.io/mes-niches-site/es/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Guías prácticas">
-<meta name="twitter:description" content="Guías prácticas">
+<meta name="twitter:description" content="Respuestas concretas a preguntas concretas, sin rodeos. Guías prácticas sobre cocina económica, organización del hogar, mantenimiento básico y cuidado de mascotas.">
 <meta name="p:domain_verify" content="00214c18a1f203e5ddb388730fb8fc8f"/>
 
 <style>
@@ -38,15 +38,92 @@
 <nav class="breadcrumb"><span>Inicio</span></nav>
 <div class="lang-switch"><a href="https://simonlinuxia.github.io/mes-niches-site/fr/">FR</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/en/">EN</a> · <span class="lang-current">ES</span></div>
 <main>
-<h1>Guías prácticas</h1>
-<ul>
-<li><a href="entretien-de-base-auto-pour-non-mecaniciens/">Mantenimiento básico del auto para no mecánicos</a></li>
-<li><a href="entretien-de-plantes-d-interieur-pour-debutants/">Cuidado de plantas de interior para principiantes</a></li>
-<li><a href="organisation-et-rangement-en-petit-espace/">Organización y almacenamiento en espacios pequeños</a></li>
-<li><a href="repas-economiques-pour-etudiants/">Comidas económicas para estudiantes</a></li>
-<li><a href="soins-de-base-pour-nouveaux-proprietaires-d-animaux/">Cuidados básicos para nuevos dueños de mascotas</a></li>
-<li><a href="soins-des-animaux/">Cuidado de mascotas</a></li>
-</ul>
+
+<style>
+  .eg-hero { display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 48px; }
+  .eg-hero-text { flex: 1; min-width: 280px; }
+  .eyebrow { font-family: "Courier New", monospace; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; color: #0f8f6f; margin-bottom: 8px; }
+  .eg-hero h1 { font-size: 2.6em; margin: 4px 0 16px; line-height: 1.1; }
+  .eg-quote { border-left: 3px solid #0f8f6f; padding-left: 14px; font-size: 1.15em; color: #333; margin-bottom: 16px; }
+  .eg-section { margin: 56px 0; }
+  .eg-section h2 { font-size: 1.8em; margin: 4px 0 8px; }
+  .eg-section .sub { color: #666; margin-bottom: 24px; }
+  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .value-card { border: 1px solid #e2e2e2; padding: 18px; border-radius: 4px; }
+  .value-card h3 { margin: 6px 0 8px; font-size: 1.1em; }
+  .value-card p { color: #555; font-size: 0.95em; margin: 0; }
+  .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .topic-card { display: block; border: 1px solid #e2e2e2; border-radius: 4px; overflow: hidden; text-decoration: none; color: inherit; }
+  .topic-card:hover { border-color: #0f8f6f; }
+  .topic-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #f4f4f4; }
+  .topic-body { padding: 16px; }
+  .topic-title { font-weight: 700; font-size: 1.1em; margin: 6px 0; color: #171718; }
+  .topic-desc { color: #555; font-size: 0.9em; }
+  .method-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: start; }
+  .method-item { margin-bottom: 20px; }
+  .method-tag { font-family: "Courier New", monospace; color: #0f8f6f; font-size: 0.85em; }
+  .dark-card { background: #17181a; color: #f2f2f2; padding: 28px; border-radius: 4px; }
+  .dark-card .bar { width: 32px; height: 3px; background: #0f8f6f; margin-bottom: 14px; }
+  .dark-card h3 { font-size: 1.2em; margin: 0 0 12px; }
+  .eg-hero-img { flex: 1; min-width: 280px; max-width: 480px; }
+  .eg-hero-img img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 4px; background: #f4f4f4; }
+  @media (max-width: 640px) { .method-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="eg-hero">
+  <div class="eg-hero-text">
+    <div class="eyebrow">// PROYECTO INDEPENDIENTE DE CONOCIMIENTO</div>
+    <h1>Guías prácticas</h1>
+    <div class="eg-quote">Respuestas concretas a preguntas concretas, sin rodeos.</div>
+    <p>Un proyecto independiente que prueba y documenta consejos prácticos para la vida diaria — cocina económica, organización del hogar, mantenimiento básico y cuidado de mascotas. Pensado para la utilidad, la claridad y la aplicación directa.</p>
+  </div>
+  <div class="eg-hero-img">
+    <img src="https://simonlinuxia.github.io/mes-niches-site/home-images/hero.jpg" alt="Guías prácticas" loading="lazy">
+  </div>
+</div>
+
+<div class="eg-section">
+  <div class="eyebrow">01 / FUNDAMENTOS</div>
+  <h2>Valores fundamentales</h2>
+  <div class="sub">Los principios detrás de cada guía que publicamos.</div>
+  <div class="values-grid">
+    <div class="value-card"><h3>Practicidad</h3><p>Cada consejo está pensado para aplicarse con recursos cotidianos — si no es realista, no se publica.</p></div>
+    <div class="value-card"><h3>Honestidad</h3><p>Respuestas directas y objetivas, sin relleno ni explicaciones innecesarias — solo lo que funciona y lo que no.</p></div>
+    <div class="value-card"><h3>Simplicidad</h3><p>Formato claro y lenguaje directo, pensados para dar una respuesta justo cuando se necesita.</p></div>
+  </div>
+</div>
+
+<div class="eg-section">
+  <div class="eyebrow">02 / ÁREAS QUE CUBRIMOS</div>
+  <h2>Temas que cubrimos</h2>
+  <div class="sub">Respuestas concretas en las áreas clave de la vida diaria.</div>
+  <div class="topics-grid">
+    <a class="topic-card" href="entretien-de-base-auto-pour-non-mecaniciens/"><img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/auto.jpg" alt="Mantenimiento básico del auto" loading="lazy"><div class="topic-body"><div class="topic-cat eyebrow">CATEGORÍA / MANTENIMIENTO</div><div class="topic-title">Mantenimiento básico del auto</div><div class="topic-desc">Revisiones y arreglos sencillos que cualquiera puede hacer, sin necesidad de taller.</div></div></a>
+    <a class="topic-card" href="entretien-de-plantes-d-interieur-pour-debutants/"><img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/plants.jpg" alt="Cuidado de plantas de interior" loading="lazy"><div class="topic-body"><div class="topic-cat eyebrow">CATEGORÍA / ESPACIO VITAL</div><div class="topic-title">Cuidado de plantas de interior</div><div class="topic-desc">Rutinas claras para el riego, la exposición a la luz, el sustrato y los problemas comunes de vitalidad de las plantas.</div></div></a>
+    <a class="topic-card" href="organisation-et-rangement-en-petit-espace/"><img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/organization.jpg" alt="Organización de espacios pequeños" loading="lazy"><div class="topic-body"><div class="topic-cat eyebrow">CATEGORÍA / ORGANIZACIÓN</div><div class="topic-title">Organización de espacios pequeños</div><div class="topic-desc">Estrategias de distribución y métodos de almacenamiento para aprovechar al máximo el volumen útil en viviendas compactas.</div></div></a>
+    <a class="topic-card" href="repas-economiques-pour-etudiants/"><img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/meals.jpg" alt="Comidas económicas" loading="lazy"><div class="topic-body"><div class="topic-cat eyebrow">CATEGORÍA / NUTRICIÓN</div><div class="topic-title">Comidas económicas</div><div class="topic-desc">Recetas con costo real y trucos para comer bien con presupuesto de estudiante.</div></div></a>
+    <a class="topic-card" href="soins-de-base-pour-nouveaux-proprietaires-d-animaux/"><img class="topic-img" src="https://simonlinuxia.github.io/mes-niches-site/home-images/pets.jpg" alt="Bases para nuevos dueños de mascotas" loading="lazy"><div class="topic-body"><div class="topic-cat eyebrow">CATEGORÍA / MASCOTAS</div><div class="topic-title">Bases para nuevos dueños de mascotas</div><div class="topic-desc">Lo que hay que saber antes (y justo después) de llevar una mascota a casa.</div></div></a>
+  </div>
+</div>
+
+<div class="eg-section">
+  <div class="eyebrow">03 / ESTÁNDARES DE CALIDAD</div>
+  <h2>Respuestas directas, precisión verificada</h2>
+  <div class="sub">Guías prácticas combina pruebas concretas con estándares de revisión modernos para ofrecer contenido que va directo al grano.</div>
+  <div class="method-grid">
+    <div>
+      <div class="method-item"><div class="method-tag">[01]</div><h3>Estructuración de contenido asistida por IA</h3><p>Herramientas modernas ayudan a reunir, resumir y organizar con claridad los temas prácticos.</p></div>
+      <div class="method-item"><div class="method-tag">[02]</div><h3>Proceso de verificación de precisión</h3><p>Cada guía pasa controles de calidad automatizados antes de publicarse, y los errores que señalan los lectores se corrigen.</p></div>
+      <div class="method-item"><div class="method-tag">[03]</div><h3>Formato sin relleno</h3><p>Sin largas historias de introducción, sin interrupciones publicitarias, sin texto de relleno innecesario.</p></div>
+    </div>
+    <div class="dark-card">
+      <div class="bar"></div>
+      <h3>Posicionamiento funcional y utilitario</h3>
+      <p>«El objetivo no es producir artículos sin fin, sino construir un índice confiable de respuestas directas a preguntas cotidianas.»</p>
+    </div>
+  </div>
+</div>
+
 </main>
 <footer><a href="https://simonlinuxia.github.io/mes-niches-site/es/">Inicio</a> · <a href="https://simonlinuxia.github.io/mes-niches-site/es/acerca-de.html">Acerca de</a></footer>
 </body>
